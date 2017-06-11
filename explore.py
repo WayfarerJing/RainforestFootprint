@@ -25,7 +25,7 @@ for n in range(1, len(all_file_paths)):
 #     print(all_file_paths[i])
 
 
-img = cv2.imread('/Users/jingyaxu/Documents/kaggle/train-jpg-sample/train_10.jpg')
+img = cv2.imread('../train_10.jpg')
 
 ##########################################
 #########detector, descriptor#############

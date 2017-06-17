@@ -10,6 +10,14 @@ def my_PreProc(data):
     #my preprocessing:
     train_imgs = dataset_normalized(train_imgs)
 
+# ==== convert RGB image in black and white (# of samples, 256,256,1)
+def rgb2gray(rgb):
+    assert (len(rgb.shape)==4)  #4D arrays
+    assert (rgb.shape[3]==3)
+    bn_imgs = rgb[:,:,:,0]*0.299 + rgb[:,:,:,1]*0.587 + rgb[:,:,:,2]*0.114
+    bn_imgs = np.reshape(bn_imgs,(rgb.shape[0],rgb.shape[1],rgb.shape[2],1))
+    return bn_imgs
+
 # ===== normalize over the dataset
 def dataset_normalized(imgs):
     assert (len(imgs.shape)==4)  #4D arrays

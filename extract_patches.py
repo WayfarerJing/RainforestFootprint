@@ -48,7 +48,7 @@ def extract_random(full_imgs,full_masks, patch_h,patch_w, N_patches, inside=True
     assert (full_imgs.shape[3]==1 or full_imgs.shape[3]==3)  #check the channel is 1 or 3
     assert (full_imgs.shape[0] == full_masks.shape[0])
     patches = np.empty((N_patches,patch_h,patch_w,full_imgs.shape[3]))
-    patches_masks = np.empty(N_patches)
+    patches_masks = np.empty((N_patches,full_masks.shape[1]))
     img_h = full_imgs.shape[1]  #height of the full image
     img_w = full_imgs.shape[2] #width of the full image
     # (0,0) in the center of the image
@@ -66,10 +66,10 @@ def extract_random(full_imgs,full_masks, patch_h,patch_w, N_patches, inside=True
             if inside==True:
                 if is_patch_inside_FOV(x_center,y_center,img_w,img_h,patch_h)==False:
                     continue
-            patch = full_imgs[i,:,y_center-int(patch_h/2):y_center+int(patch_h/2),x_center-int(patch_w/2):x_center+int(patch_w/2)]
+            patch = full_imgs[i,y_center-int(patch_h/2):y_center+int(patch_h/2),x_center-int(patch_w/2):x_center+int(patch_w/2),:]
             patch_mask = full_masks[i]
             patches[iter_tot]=patch
-            patches_masks[iter_tot]=patch_mask
+            patches_masks[iter_tot,:]=patch_mask
             iter_tot +=1   #total
             k+=1  #per full_img
     return patches, patches_masks

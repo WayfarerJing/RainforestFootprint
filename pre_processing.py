@@ -4,7 +4,7 @@ from utils import *
 
 def my_PreProc(data):
     assert(len(data.shape)==4)
-    assert (data.shape[1]==3)  #Use the original images
+    assert (data.shape[3]==3)  #Use the original images
     #black-white conversion
     train_imgs = rgb2gray(data)
     #my preprocessing:

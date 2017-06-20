@@ -1,5 +1,7 @@
 [data paths]
-path_train_imgs = /DRIVE_dataset_train_folder/
+path_dir = /DIRECTORY
+train_sample = /train-jpg-sample/
+train_tag = /train_v2.csv
 
 [data attributes]
 #Dimensions of the patches extracted from the full images

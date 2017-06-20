@@ -3,11 +3,8 @@ import random
 import ConfigParser
 
 from utils import load_rgb
-from utils import group_images
 
 from pre_processing import my_PreProc
-
-import keras
 
 def get_y_label_sample(path_dir, train_sample, train_label):
     train_sample_path, train_tag_path =  path_dir + train_sample, path_dir + train_label
@@ -44,5 +41,5 @@ def get_data_training(path_dir, train_full_img, train_label):
     print "\ntrain masks shape:"
     print train_masks.shape
 
-    return train_imgs_original, train_masks  # , patches_imgs_test, patches_masks_test
+    return train_imgs_original, train_masks  
 

@@ -1,5 +1,7 @@
 import ConfigParser
 from train_u_net import
+from extract_patches import get_data_training_sample
+from extract_patches import get_data_training
 
 #=============== read input from config =====================
 config = ConfigParser.RawConfigParser()

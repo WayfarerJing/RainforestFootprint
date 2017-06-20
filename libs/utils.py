@@ -43,3 +43,23 @@ def load_sample_y_lable(train_sample_path, train_tag_path):
     for label in label_list:
         sampleTag[label] = sampleTag['tags'].apply(lambda x: 1 if label in x.split(' ') else 0)
     return sampleTag
+  
+def true_pos(y_true, y_pred):
+    return K.sum(y_true * K.round(y_pred))
+
+def false_pos(y_true, y_pred):
+    return K.sum(y_true * (1. - K.round(y_pred)))
+
+def false_neg(y_true, y_pred):
+    return K.sum((1. - y_true) * K.round(y_pred))
+
+def precision(y_true, y_pred):
+    return true_pos(y_true, y_pred) / \
+           (true_pos(y_true, y_pred) + false_pos(y_true, y_pred))
+
+def recall(y_true, y_pred):
+    return true_pos(y_true, y_pred) / \
+           (true_pos(y_true, y_pred) + false_neg(y_true, y_pred))
+
+def f1_score(y_true, y_pred):
+    return 2. / (1. / recall(y_true, y_pred) + 1. / precision(y_true, y_pred))

@@ -15,8 +15,7 @@ def get_y_label_sample(path_dir, train_sample, train_label):
     return y_sample_train_label
 
 #Load the original data
-def get_data_training_sample(
-                      path_dir, train_sample, train_label):
+def get_data_training_sample(path_dir, train_sample, train_label):
     train_imgs_original_sample = load_rgb(path_dir + train_sample)
     train_masks = keras.utils.to_categorical(get_y_label_sample(path_dir, train_sample, train_label)['primary'], 2)
 
@@ -32,9 +31,8 @@ def get_data_training_sample(
     return train_imgs_original_sample, train_masks
 
 
-def get_data_training(DRIVE_train_imgs_original,
-                             path_dir, train_label):
-    train_imgs_original = load_rgb(DRIVE_train_imgs_original)
+def get_data_training(path_dir, train_full_img, train_label):
+    train_imgs_original = load_rgb(path_dir + train_full_img)
     train_masks = keras.utils.to_categorical(load_y_lable(path_dir, train_label)['primary'], 2)
 
     train_imgs = my_PreProc(train_imgs_original)

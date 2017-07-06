@@ -6,7 +6,6 @@ from matplotlib import pyplot as plt
 from PIL import Image
 import pandas as pd
 from keras import backend as K
-import 
 
 #load images to images (# of samples, 256,256,3)
 def load_rgb_sample(train_path, image_type):
@@ -46,6 +45,18 @@ def load_y_lable(train_tag_path):
   for label in label_list:
       train_tags[label] = train_tags['tags'].apply(lambda x: 1 if label in x.split(' ') else 0)
   return train_tags
+
+################ batch ####################
+
+def load_batch_rgb(train_tags, path_dir, start_idx, batch_size, imgtype):
+    batch_train_tags, batch_train_filename = batch_from_label(train_tags, start_idx, batch_size, imgtype)
+    batch_train_img = load_image_lst(mydir='train_jpg', filename_lst=batch_train_filename, imgtype=imgtype)
+    return batch_train_img, batch_train_tags
+
+def batch_from_label(df_label, start_idx, n, suffix):
+    batch = df_label[start_idx:start_idx + n]
+    batch_img_name = [x + suffix for x in batch['image_name']]
+    return batch, batch_img_name
 
 ################ random ###################
 

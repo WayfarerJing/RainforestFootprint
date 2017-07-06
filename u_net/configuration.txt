@@ -1,6 +1,8 @@
 [data paths]
-path_dir = /DIRECTORY
+path_dir = ../../../data
 train_sample = /train-jpg-sample/
+train_all_tif = /train_tif_v2/
+train_all_jpg = /train_jpg/
 train_tag = /train_v2.csv
 
 [data attributes]
@@ -14,7 +16,7 @@ N_subimgs = 190000
 #if patches are extracted only inside the field of view:
 inside_FOV = False
 #Number of training epochs
-N_epochs = 150
+N_epochs = 25
 batch_size = 32
 #if running with nohup
 nohup = True

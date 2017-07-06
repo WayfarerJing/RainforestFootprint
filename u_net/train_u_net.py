@@ -8,7 +8,7 @@ K.set_image_data_format('channels_last')
 
 #Define the neural network
 def get_unet(n_ch, patch_height, patch_width):
-    inputs = Input((patch_height, patch_width, 3))
+    inputs = Input((patch_height, patch_width, n_ch))
     conv1 = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(inputs)
     conv1 = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(conv1)
     pool1 = MaxPooling2D(pool_size=(2, 2))(conv1)
@@ -52,6 +52,6 @@ def get_unet(n_ch, patch_height, patch_width):
     conv12 = core.Reshape((2, ))(conv12)
     
     model = Model(input=inputs, output=conv12)
-    model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=f1_score)
+    model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy', f1_score])
     
     return model

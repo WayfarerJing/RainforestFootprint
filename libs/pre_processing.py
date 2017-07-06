@@ -6,9 +6,10 @@ def my_PreProc(data):
     assert(len(data.shape)==4)
     assert (data.shape[3]==3)  #Use the original images
     #black-white conversion
-    train_imgs = rgb2gray(data)
+    #train_imgs = rgb2gray(data)
     #my preprocessing:
-    train_imgs = dataset_normalized(train_imgs)
+    train_imgs = dataset_normalized(data)
+    return train_imgs
 
 # ==== convert RGB image in black and white (# of samples, 256,256,1)
 def rgb2gray(rgb):
@@ -21,7 +22,6 @@ def rgb2gray(rgb):
 # ===== normalize over the dataset
 def dataset_normalized(imgs):
     assert (len(imgs.shape)==4)  #4D arrays
-    assert (imgs.shape[3]==1)  #check the channel is 1
     imgs_normalized = np.empty(imgs.shape)
     imgs_std = np.std(imgs)
     imgs_mean = np.mean(imgs)
